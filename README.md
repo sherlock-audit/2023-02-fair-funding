@@ -6,31 +6,46 @@
 
 # Resources
 
-- [resource1](url)
+- [Fair Funding Introduction Article](https://unstoppabledefi.medium.com/fair-funding-in-crypto-bc88d633646)
 - [resource2](url)
 
 # On-chain context
 
-TO FILL IN BY PROTOCOL
-
 ```
-DEPLOYMENT: [e.g. mainnet, arbitrum, optimism, ..]
-ERC20: [e.g. any, none, USDC, USDC and USDT]
-ERC721: [e.g. any, none, UNI-V3]
-ERC777: [e.g. any, none, {token name}]
-FEE-ON-TRANSFER: [e.g. any, none, {token name}]
-REBASING TOKENS: [e.g. any, none, {token name}]
-ADMIN: [trusted, restricted, n/a]
-EXTERNAL-ADMINS: [trusted, restricted, n/a]
+DEPLOYMENT: Ethereum Mainnet
+ERC20: WETH
+ERC721: MintableERC721 (part of this audit)
+ERC777: none
+FEE-ON-TRANSFER: none
+REBASING TOKENS: none
+ADMIN: trusted
+EXTERNAL-ADMINS: n/a
 ```
 
-In case of restricted, by default Sherlock does not consider direct protocol rug pulls as a valid issue unless the protocol clearly describes in detail the conditions for these restrictions. 
-For contracts, owners, admins clearly distinguish the ones controlled by protocol vs user controlled. This helps watsons distinguish the risk factor. 
-Example: 
-* `ContractA.sol` is owned by the protocol. 
-* `admin` in `ContractB` is restricted to changing properties in `functionA` and should not be able to liquidate assets or affect user withdrawals in any way. 
-* `admin` in `ContractC` is user admin and is restricted to only `functionB`
+## Priviledged Roles
+### `AuctionHouse`: 
+    1) `owner` can start/stop auction, refund highest bidder if needed and set the target vault contract
+
+### `Vault`: 
+    1) `is_operator`: can set the Alchemix Alchemist contract as well as the `fund_receiver` and add/remove other operators
+    2) `is_depositor`: can deposit into the vault. In practice this will be the `AuctionHouse` contract.
+    3) `migration_admin`: can set a migration contract and after 30 day timelock execute a migration. In practice this role will be handed over to the Alchemix Multisig and would only need to be used in case something significant changes at Alchemix. Since vault potentially holds an Alchemix position over a long time during which changes at Alchemix could happen, the `migration_admin` has complete control over the vault and its position after giving depositors a 30 day window to liquidate (or transfer with a flashloan) their position if they're not comfortable with the migration. `migration_admin` works under the same security and trust assumptions as the Alchemix (Proxy) Admins.
+
+### `MintableERC721`:
+    1) `owner`: one owner, in practice the `Vault` contract issuing a new token as receipt and control over a deposited position.
+
+
+## Known Issues / Risks
+
+During the auction phase all priviledged roles have to be trusted.  
+Migration admin has to be trusted for the entire time, as long as there is an active position.  
+Alchemix admins, protocol and underlying tokens have to be trusted.
+
 
 # Audit scope
+
+- `fair-funding/contracts/AuctionHouse.vy`
+- `fair-funding/contracts/Vault.vy`
+- `fair-funding/contracts/solidity/MintableERC721.sol`
 
 # About {project}
