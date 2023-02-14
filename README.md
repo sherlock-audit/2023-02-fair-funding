@@ -1,4 +1,4 @@
-# {project} contest details
+# Fair funding contest details
 
 - Join [Sherlock Discord](https://discord.gg/MABEWyASkp)
 - Submit findings using the issue page in your private contest repo (label issues as med or high)
@@ -48,4 +48,6 @@ Alchemix admins, protocol and underlying tokens have to be trusted.
 - `fair-funding/contracts/Vault.vy`
 - `fair-funding/contracts/solidity/MintableERC721.sol`
 
-# About {project}
+# About Fair Funding
+
+
