@@ -17,7 +17,7 @@ The loan is sent to the raising project while the investor retains complete cont
 The Fair Funding platform has been developed almost exclusively test driven with the help of Titanoboa & Vyper.
 A total of 133 tests cover all aspects of the auction, vault and user interactions.
 
-We use Poetry (https://python-poetry.org/) for the python env management.
+We use Poetry (https://python-poetry.org/) for the python env management and Python version `3.10`.
 
 To run the tests run:
 ```
@@ -25,6 +25,18 @@ poetry shell
 poetry install
 pytest
 ```
+
+If `3.10` is not your default version and you're using `pyenv`, set up your environment first via:
+
+```
+pyenv install 3.10
+pyenv local 3.10
+poetry env use 3.10
+poetry shell
+poetry install
+pytest
+```
+
 
 ## Contact
 https://unstoppable.ooo
