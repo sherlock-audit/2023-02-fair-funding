@@ -25,7 +25,7 @@ ERC777: none
 FEE-ON-TRANSFER: none
 REBASING TOKENS: none
 ADMIN: trusted
-EXTERNAL-ADMINS: n/a
+EXTERNAL-ADMINS: trusted
 ```
 
 ## Priviledged Roles
