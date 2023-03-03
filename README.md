@@ -6,10 +6,6 @@
 
 # Resources
 
-## About Fair Funding
-- [Fair Funding Introduction Article](https://unstoppabledefi.medium.com/fair-funding-in-crypto-bc88d633646)
-- [Fair Funding Campaign Article](https://unstoppabledefi.medium.com/fair-funding-campaign-662131dfa3f6)
-
 ## Integrations
 - [Alchemix Finance](https://alchemix.fi)
 - [Alchemix Contracts on Github](https://github.com/alchemix-finance/v2-foundry/tree/master/src)
@@ -54,5 +50,6 @@ Alchemix admins, protocol and underlying tokens have to be trusted.
 - `fair-funding/contracts/Vault.vy`
 - `fair-funding/contracts/solidity/MintableERC721.sol`
 
-
-
+## About Fair Funding
+- [Fair Funding Introduction Article](https://unstoppabledefi.medium.com/fair-funding-in-crypto-bc88d633646)
+- [Fair Funding Campaign Article](https://unstoppabledefi.medium.com/fair-funding-campaign-662131dfa3f6)
